@@ -24,8 +24,6 @@
     var app = angular.module('myapp', []);
 
     app.controller('MainCtrl', function($scope) {
-      var timeout = false;
-      var sound = new Audio('http://www.mediacollege.com/downloads/sound-effects/star-wars/lightsaber/lightsaber_02.mp3');
 
       window.ondevicemotion = function(event) {
         var xVal = event.accelerationIncludingGravity.x;
@@ -38,15 +36,9 @@
 
         var x = xVal > 0 ? xVal : (xVal * -1);
 
-        if (x > 2.0 && !timeout) {
-
+        if (x > 1.0) {
+          var sound = new Audio('http://www.mediacollege.com/downloads/sound-effects/star-wars/lightsaber/lightsaber_02.mp3');
           sound.play();
-
-          timeout = true;
-          setTimeout(function() {
-            timeout = false;
-          }, 3100);
-
         }
 
       };
