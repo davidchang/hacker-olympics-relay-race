@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+  
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Custom Plunker</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  </head>
+  
+  <body ng-controller="MainCtrl">
+    
+    <h1>Hello World</h1>
+    <p>Edited by @davidchang</p>
+
+    <section>
+      <div ng-repeat="result in results">
+        {{ result.points }}. {{ result.name }}
+      </div>
+    </section>
+  </body>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular.min.js"></script>
+  <script>
+    var app = angular.module('myapp', []);
+
+    app.controller('MainCtrl', function($scope, $http) {
+      $http.get('http://judgingjs.herokuapp.com/leaderboard.json').then(function(res) {
+        $scope.results = res.data;
+      });
+    });
+
+  </script>
+
+</html>
